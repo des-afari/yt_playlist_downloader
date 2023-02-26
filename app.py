@@ -24,10 +24,18 @@ class Download:
         res = '{}p'.format(self.res)
         num = 1
 
-        for video in p.videos:
-            print(f'video {num}')
-            video.streams.filter(res=res).first().download()
-            num += 1
+        try:
+            for video in p.videos:
+                print(f'video {num}')
+                video.streams.filter(res=res).first().download()
+                print('Download complete')
+                num += 1
+        except:
+            print('==============================================================================')
+            print('ERROR: INVALID URL OR RESOLUTION')
+            print('url: https://www.youtube.com/playlist?list=PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi')
+            print('resolution: 720')
+            print('==============================================================================')
 
 
 if __name__ == '__main__':
